@@ -12,19 +12,26 @@ SOCKET_PATH = "/tmp/claude-traffic.sock"
 def map_event(event: dict) -> tuple:
     """Map a Claude Code hook event to (state, detail).
 
+    Supports both old format (type/tool.name) and new format (hook_event_name/tool_name).
+
     Returns:
         (state, detail) tuple
     """
-    event_type = event.get("type", "")
+    # Support both old and new field names
+    event_type = event.get("hook_event_name") or event.get("type", "")
+    tool_name = event.get("tool_name") or event.get("tool", {}).get("name", "unknown")
 
     if event_type == "PreToolUse":
-        tool_name = event.get("tool", {}).get("name", "unknown")
-        if event.get("permission_required"):
+        # New format uses permission_mode, old uses permission_required
+        needs_permission = (
+            event.get("permission_mode") == "ask"
+            or event.get("permission_required")
+        )
+        if needs_permission:
             return ("CONFIRM", f"需要确认: {tool_name}")
         return ("WORKING", f"执行: {tool_name}")
 
     if event_type == "PostToolUse":
-        tool_name = event.get("tool", {}).get("name", "unknown")
         return ("WORKING", f"完成: {tool_name}")
 
     if event_type == "Stop":
