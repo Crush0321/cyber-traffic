@@ -1,6 +1,9 @@
 """App-wide constants."""
 import os
 
+# Application name shown in menu bar
+APP_NAME = "Cyber Traffic"
+
 # Socket
 SOCKET_PATH = "/tmp/claude-traffic.sock"
 
