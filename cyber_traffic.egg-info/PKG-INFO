@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: cyber-traffic
+Version: 0.1.0
+Requires-Python: >=3.9
+Requires-Dist: rumps>=0.4.0
+Dynamic: requires-dist
+Dynamic: requires-python

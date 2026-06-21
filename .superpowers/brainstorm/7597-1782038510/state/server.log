@@ -1,0 +1,10 @@
+{"type":"server-started","port":64787,"host":"127.0.0.1","url_host":"localhost","url":"http://localhost:64787","screen_dir":"/Volumes/Fanxiang/workspace/cyber-traffic/.superpowers/brainstorm/7597-1782038510/content","state_dir":"/Volumes/Fanxiang/workspace/cyber-traffic/.superpowers/brainstorm/7597-1782038510/state"}
+{"type":"screen-added","file":"/Volumes/Fanxiang/workspace/cyber-traffic/.superpowers/brainstorm/7597-1782038510/content/menubar-mockup.html"}
+{"source":"user-event","type":"click","text":"🟢\n    \n      空闲状态 (IDLE)\n      绿色圆形图标，Claude 等待输入中","choice":"idle","id":null,"timestamp":1782039006251}
+{"source":"user-event","type":"click","text":"🟡\n    \n      工作中 (WORKING)\n      黄色圆形图标，Claude 正在思考/执行","choice":"working","id":null,"timestamp":1782039007445}
+{"source":"user-event","type":"click","text":"🟢\n    \n      空闲状态 (IDLE)\n      绿色圆形图标，Claude 等待输入中","choice":"idle","id":null,"timestamp":1782039008694}
+{"source":"user-event","type":"click","text":"🟡\n    \n      等待确认 (CONFIRM)\n      黄色闪烁，需要你批准操作","choice":"confirm","id":null,"timestamp":1782039009511}
+{"source":"user-event","type":"click","text":"🟢\n    \n      空闲状态 (IDLE)\n      绿色圆形图标，Claude 等待输入中","choice":"idle","id":null,"timestamp":1782039010212}
+{"source":"user-event","type":"click","text":"🔴\n    \n      错误 (ERROR)\n      红色圆形图标，出现错误或被阻塞","choice":"error","id":null,"timestamp":1782039011022}
+{"source":"user-event","type":"click","text":"🟢\n    \n      空闲状态 (IDLE)\n      绿色圆形图标，Claude 等待输入中","choice":"idle","id":null,"timestamp":1782039011550}
+{"type":"screen-added","file":"/Volumes/Fanxiang/workspace/cyber-traffic/.superpowers/brainstorm/7597-1782038510/content/waiting.html"}

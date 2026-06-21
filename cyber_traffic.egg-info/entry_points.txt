@@ -1,0 +1,2 @@
+[console_scripts]
+cyber-traffic = cyber_traffic.app:main

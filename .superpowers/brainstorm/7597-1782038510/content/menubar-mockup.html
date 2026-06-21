@@ -1,0 +1,70 @@
+<h2>🚦 菜单栏红绿灯 — 视觉效果预览</h2>
+<p class="subtitle">点击不同状态查看菜单栏和下拉菜单的效果</p>
+
+<div class="options">
+  <div class="option" data-choice="idle" onclick="toggleSelect(this)">
+    <div class="letter" style="background:#34c759">🟢</div>
+    <div class="content">
+      <h3>空闲状态 (IDLE)</h3>
+      <p>绿色圆形图标，Claude 等待输入中</p>
+    </div>
+  </div>
+  <div class="option" data-choice="working" onclick="toggleSelect(this)">
+    <div class="letter" style="background:#ffcc00">🟡</div>
+    <div class="content">
+      <h3>工作中 (WORKING)</h3>
+      <p>黄色圆形图标，Claude 正在思考/执行</p>
+    </div>
+  </div>
+  <div class="option" data-choice="confirm" onclick="toggleSelect(this)">
+    <div class="letter" style="background:#ffcc00;animation:blink 1s infinite">🟡</div>
+    <div class="content">
+      <h3>等待确认 (CONFIRM)</h3>
+      <p>黄色闪烁，需要你批准操作</p>
+    </div>
+  </div>
+  <div class="option" data-choice="error" onclick="toggleSelect(this)">
+    <div class="letter" style="background:#ff3b30">🔴</div>
+    <div class="content">
+      <h3>错误 (ERROR)</h3>
+      <p>红色圆形图标，出现错误或被阻塞</p>
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+</style>
+
+<h3 style="margin-top:2rem">📋 下拉菜单预览（点击菜单栏图标展开）</h3>
+
+<div class="mockup">
+  <div class="mockup-header">Claude Traffic Light — 下拉菜单</div>
+  <div class="mockup-body" style="font-family:system-ui;padding:0;min-width:280px">
+    <div style="padding:12px 16px;border-bottom:1px solid #e5e5e5;display:flex;align-items:center;gap:8px">
+      <span style="font-size:20px">🟢</span>
+      <div>
+        <div style="font-weight:600;font-size:14px">当前状态：空闲</div>
+        <div style="color:#888;font-size:12px">Claude Code 等待输入中</div>
+      </div>
+    </div>
+    <div style="padding:8px 16px;border-bottom:1px solid #e5e5e5">
+      <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">状态历史</div>
+      <div style="font-size:13px;line-height:1.8">
+        <div style="display:flex;justify-content:space-between"><span>🟢 空闲</span><span style="color:#888">14:32:05</span></div>
+        <div style="display:flex;justify-content:space-between"><span>🟡 工作中 — 读取文件</span><span style="color:#888">14:31:48</span></div>
+        <div style="display:flex;justify-content:space-between"><span>🟡 等待确认 — 写入 config.json</span><span style="color:#888">14:31:30</span></div>
+        <div style="display:flex;justify-content:space-between"><span>🟡 工作中 — 编辑代码</span><span style="color:#888">14:30:15</span></div>
+        <div style="display:flex;justify-content:space-between"><span>🟢 空闲</span><span style="color:#888">14:29:50</span></div>
+      </div>
+    </div>
+    <div style="padding:8px 16px;font-size:13px">
+      <div style="padding:4px 0;cursor:pointer">⚙️ 设置...</div>
+      <div style="padding:4px 0;cursor:pointer">🔇 静音</div>
+      <div style="padding:4px 0;cursor:pointer;border-top:1px solid #e5e5e5;margin-top:4px;padding-top:8px">🚪 退出</div>
+    </div>
+  </div>
+</div>
