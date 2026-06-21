@@ -1,4 +1,5 @@
 """Main menu bar app — integrates all components."""
+import os
 import sys
 import datetime
 import threading
@@ -137,9 +138,45 @@ class TrafficApp(rumps.App):
         rumps.quit_application()
 
 
+def _install_launchd():
+    """Install launchd plist for auto-start on login."""
+    import shutil
+    plist_src = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                             "com.crush.cyber-traffic.plist")
+    plist_dst = os.path.expanduser("~/Library/LaunchAgents/com.crush.cyber-traffic.plist")
+
+    if not os.path.exists(plist_src):
+        print(f"❌ Plist not found: {plist_src}")
+        return
+
+    os.makedirs(os.path.dirname(plist_dst), exist_ok=True)
+    shutil.copy2(plist_src, plist_dst)
+    os.system(f"launchctl load {plist_dst}")
+    print(f"✅ 已安装开机自启: {plist_dst}")
+    print("   登录后自动启动，崩溃后自动重启")
+    print(f"   日志: /tmp/cyber-traffic.log")
+
+
+def _uninstall_launchd():
+    """Uninstall launchd plist."""
+    plist_dst = os.path.expanduser("~/Library/LaunchAgents/com.crush.cyber-traffic.plist")
+    if os.path.exists(plist_dst):
+        os.system(f"launchctl unload {plist_dst}")
+        os.remove(plist_dst)
+        print(f"✅ 已卸载开机自启: {plist_dst}")
+    else:
+        print("ℹ️  未安装开机自启")
+
+
 def main():
     if "--setup" in sys.argv:
         from cyber_traffic.setup_hooks import setup
         setup()
+        return
+    if "--install" in sys.argv:
+        _install_launchd()
+        return
+    if "--uninstall" in sys.argv:
+        _uninstall_launchd()
         return
     TrafficApp().run()

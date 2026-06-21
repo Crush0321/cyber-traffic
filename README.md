@@ -27,9 +27,33 @@ cyber-traffic
 
 # 自动配置 Claude Code hooks
 cyber-traffic --setup
+
+# 安装开机自启
+cyber-traffic --install
+
+# 卸载开机自启
+cyber-traffic --uninstall
 ```
 
 `--setup` 会自动修改 `~/.claude/settings.json`，添加 hook 配置。配置完成后重启 Claude Code 即可生效。
+
+`--install` 会注册 macOS LaunchAgent，登录后自动启动菜单栏 app，崩溃后自动重启。
+
+## 开机自启
+
+```bash
+# 安装（注册 launchd 服务）
+cyber-traffic --install
+
+# 卸载
+cyber-traffic --uninstall
+```
+
+安装后：
+- 登录 macOS 自动启动
+- 崩溃后自动重启
+- 日志输出到 `/tmp/cyber-traffic.log`
+- 手动停止：`launchctl unload ~/Library/LaunchAgents/com.crush.cyber-traffic.plist`
 
 ## 功能
 
