@@ -141,18 +141,31 @@ class TrafficApp(rumps.App):
 def _install_launchd():
     """Install launchd plist for auto-start on login."""
     import shutil
-    plist_src = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
-                             "com.crush.cyber-traffic.plist")
+
+    pkg_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    plist_src = os.path.join(pkg_dir, "com.crush.cyber-traffic.plist")
+    script_src = os.path.join(pkg_dir, "scripts", "start.sh")
+
     plist_dst = os.path.expanduser("~/Library/LaunchAgents/com.crush.cyber-traffic.plist")
+    script_dst = os.path.expanduser("~/Library/Scripts/cyber-traffic.sh")
 
     if not os.path.exists(plist_src):
         print(f"❌ Plist not found: {plist_src}")
         return
 
+    # Copy start script to local disk (launchd can't access external volumes)
+    os.makedirs(os.path.dirname(script_dst), exist_ok=True)
+    shutil.copy2(script_src, script_dst)
+    os.chmod(script_dst, 0o755)
+
+    # Copy and load plist
     os.makedirs(os.path.dirname(plist_dst), exist_ok=True)
     shutil.copy2(plist_src, plist_dst)
     os.system(f"launchctl load {plist_dst}")
-    print(f"✅ 已安装开机自启: {plist_dst}")
+
+    print(f"✅ 已安装开机自启")
+    print(f"   Plist: {plist_dst}")
+    print(f"   Script: {script_dst}")
     print("   登录后自动启动，崩溃后自动重启")
     print(f"   日志: /tmp/cyber-traffic.log")
 
